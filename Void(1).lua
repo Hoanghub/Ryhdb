@@ -6252,15 +6252,6 @@ while wait() do
 end
 end)
 
-
-local ToggleAutokillplayertrials = Tabs.Race:AddToggle("ToggleAutokillplayertrials", {Title = "Auto kill player trials(beta)", Default = false })
-ToggleAutokillplayertrials:OnChanged(function(Value)
-    Autokillplayertrials = Value
-end)
-Autokillplayertrials = Value
-end)
-Options.ToggleAutotrial:SetValue(false)
-
 --------------------------------------------------------------------------------------------------------------------------------------------
 --shop
 
