@@ -5998,91 +5998,6 @@ Tabs.Race:AddButton({
 })
 
 
-Tabs.Race:AddButton({
-    Title = "kill player trials",
-    Description = "",
-    Callback = function()
-        KillPlayer = Value
-        StopTween(KillPlayer)
-        _G.TurnKen = Value
-    end
-})
-spawn(function()
-while wait() do
-pcall(function()
-if KillPlayer then
-for i,v in pairs(game:GetService("Workspace").Characters:GetChildren()) do
-if v.Name ~= game.Players.LocalPlayer.Name then
-if v:WaitForChild("Humanoid").Health > 0 and (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).Magnitude <= 100 then
-plyselecthunthelpold = v.Humanoid.Health
-repeat task.wait()
-NameTarget = v.Name
-AutoHaki()
-EquipWeapon(_G.SelectWeapon)
-NameTarget = v.Name
-TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,0,3))
-v.HumanoidRootPart.CanCollide = false
-v.HumanoidRootPart.Size = Vector3.new(100, 100, 100)
-Click()
-useskilltrial = true
-if tostring(game.Players.LocalPlayer.Team) == "Pirates" then
-    topos(v.HumanoidRootPart.CFrame * CFrame.new(0,0,3))
-            elseif tostring(game.Players.LocalPlayer.Team) == "Marines" then
-if game.Players[NameTarget].Team ~= game.Players.LocalPlayer.Team then
-    topos(v.HumanoidRootPart.CFrame * CFrame.new(0,0,3))
-end
-end
-spawn(function()
-if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 10 then
-    spawn(function()
-        Z()
-        X()
-        C()
-    end)
-end
-end)
-v.HumanoidRootPart.CanCollide = false
-TargetSelectHunt = v.Humanoid
-until KillPlayer == false or v.Humanoid.Health == 0 or not v:FindFirstChild("HumanoidRootPart") or not v:FindFirstChild("Humanoid") or not v.Parent or NextplySelect == true
-NextplySelect = false
-StartCheckTarget = false
-end
-end
-end
-end
-end)
-end
-end)
-
-spawn(function()
-    while wait() do
-        pcall(function()
-            if KillPlayer then
-            if Distance < 10 then
-            if useskilltrial then
-                game:GetService("VirtualInputManager"):SendKeyEvent(true,"Z",false,game)
-                wait(0.1)
-                game:GetService("VirtualInputManager"):SendKeyEvent(false,"Z",false,game)
-                wait(0.1)
-                game:GetService("VirtualInputManager"):SendKeyEvent(true,"X",false,game)
-                wait(0.1)
-                game:GetService("VirtualInputManager"):SendKeyEvent(false,"X",false,game)
-                wait(0.1)
-                game:GetService("VirtualInputManager"):SendKeyEvent(false,"C",false,game)
-                wait(0.1)
-                game:GetService("VirtualInputManager"):SendKeyEvent(false,"C",false,game)
-                wait(0.1)
-                game:GetService("VirtualInputManager"):SendKeyEvent(false,"V",false,game)
-                wait(0.1)
-                game:GetService("VirtualInputManager"):SendKeyEvent(false,"V",false,game)
-            end
-            end
-            end
-        end)
-        end
-    end)
-
-
 Tabs.Race:AddParagraph({
     Title = "Auto Race",
     Content = ""
@@ -6337,6 +6252,89 @@ while wait() do
 end
 end)
 
+
+local ToggleAutokillplayertrials = Tabs.Race:AddToggle("ToggleAutokillplayertrials", {Title = "Auto kill player trials(beta)", Default = false })
+ToggleAutokillplayertrials:OnChanged(function(Value)
+    Autokillplayertrials = Value
+end)
+Autokillplayertrials = Value
+end)
+Options.ToggleAutotrial:SetValue(false)
+spawn(function()
+while wait() do
+pcall(function()
+if KillPlayer then
+for i,v in pairs(game:GetService("Workspace").Characters:GetChildren()) do
+if v.Name ~= game.Players.LocalPlayer.Name then
+if v:WaitForChild("Humanoid").Health > 0 and (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).Magnitude <= 100 then
+plyselecthunthelpold = v.Humanoid.Health
+repeat task.wait()
+NameTarget = v.Name
+AutoHaki()
+EquipWeapon(_G.SelectWeapon)
+NameTarget = v.Name
+TP1(v.HumanoidRootPart.CFrame * CFrame.new(0,0,3))
+v.HumanoidRootPart.CanCollide = false
+v.HumanoidRootPart.Size = Vector3.new(100, 100, 100)
+Click()
+useskilltrial = true
+if tostring(game.Players.LocalPlayer.Team) == "Pirates" then
+    topos(v.HumanoidRootPart.CFrame * CFrame.new(0,0,3))
+            elseif tostring(game.Players.LocalPlayer.Team) == "Marines" then
+if game.Players[NameTarget].Team ~= game.Players.LocalPlayer.Team then
+    topos(v.HumanoidRootPart.CFrame * CFrame.new(0,0,3))
+end
+end
+spawn(function()
+if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 10 then
+    spawn(function()
+        Z()
+        X()
+        C()
+    end)
+end
+end)
+v.HumanoidRootPart.CanCollide = false
+TargetSelectHunt = v.Humanoid
+until KillPlayer == false or v.Humanoid.Health == 0 or not v:FindFirstChild("HumanoidRootPart") or not v:FindFirstChild("Humanoid") or not v.Parent or NextplySelect == true
+NextplySelect = false
+StartCheckTarget = false
+end
+end
+end
+end
+end)
+end
+end)
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            if KillPlayer then
+            if Distance < 10 then
+            if useskilltrial then
+                game:GetService("VirtualInputManager"):SendKeyEvent(true,"Z",false,game)
+                wait(0.1)
+                game:GetService("VirtualInputManager"):SendKeyEvent(false,"Z",false,game)
+                wait(0.1)
+                game:GetService("VirtualInputManager"):SendKeyEvent(true,"X",false,game)
+                wait(0.1)
+                game:GetService("VirtualInputManager"):SendKeyEvent(false,"X",false,game)
+                wait(0.1)
+                game:GetService("VirtualInputManager"):SendKeyEvent(false,"C",false,game)
+                wait(0.1)
+                game:GetService("VirtualInputManager"):SendKeyEvent(false,"C",false,game)
+                wait(0.1)
+                game:GetService("VirtualInputManager"):SendKeyEvent(false,"V",false,game)
+                wait(0.1)
+                game:GetService("VirtualInputManager"):SendKeyEvent(false,"V",false,game)
+            end
+            end
+            end
+        end)
+        end
+    end)
+    
 --------------------------------------------------------------------------------------------------------------------------------------------
 --shop
 
